@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--公共TitleBar-->
+    <declare-styleable name="CommTitleBar">
+        <!--左侧icon-->
+        <attr name="leftIcon" format="reference|color|integer" />
+        <!--左侧icon是否显示-->
+        <attr name="leftIconIsShow" format="boolean" />
+
+        <!--左侧文字-->
+        <attr name="leftText" format="string" />
+        <!--左侧文字颜色-->
+        <attr name="leftTextColor" format="color" />
+        <!--左侧文字大小-->
+        <attr name="leftTextSize" format="dimension" />
+
+        <!--标题文字-->
+        <attr name="titleText" format="string" />
+        <!--标题文字颜色-->
+        <attr name="titleTextColor" format="color" />
+        <!--标题文字大小-->
+        <attr name="titleTextSize" format="dimension" />
+
+        <!--右侧文字-->
+        <attr name="rightText" format="string" />
+        <!--右侧文字颜色-->
+        <attr name="rightTextColor" format="color" />
+        <!--右侧文字大小-->
+        <attr name="rightTextSize" format="dimension" />
+        <!--右侧icon-->
+        <attr name="rightIcon" format="reference|color|integer" />
+        <!--右侧icon是否显示-->
+        <attr name="rightIconIsShow" format="boolean" />
+
+        <!--背景颜色-->
+        <attr name="backgroundColor" format="color" />
+        <!--titleBar主题-->
+        <attr name="themeType" format="enum" >
+            <enum name="blue" value="0"/>
+            <enum name="white" value="1"/>
+            <enum name="other" value="2"/>
+        </attr>
+    </declare-styleable>
+    <!--公共输入控件-->
+    <declare-styleable name="EditInputView">
+        <!--输入栏标题名称-->
+        <attr name="inputTitleText" format="string" />
+        <!--输入框内容文字-->
+        <attr name="inputText" format="string" />
+        <!--输入框内容文字-->
+        <attr name="inputTextColor" format="dimension" />
+        <!--输入框提示文字-->
+        <attr name="hintText" format="string" />
+        <!--输入栏内容类型-->
+        <attr name="inputType" format="enum">
+            <enum name="text" value="0" />
+            <enum name="none" value="1" />
+            <enum name="number" value="2" />
+            <enum name="phone" value="3" />
+            <enum name="password" value="4" />
+        </attr>
+        <!--输入指定字符-->
+        <attr name="digits" format="string" />
+        <!--是否单行-->
+        <attr name="singleLine" format="boolean"/>
+        <!--最大行数-->
+        <attr name="maxLines" format="integer"/>
+        <!--字数上限-->
+        <attr name="maxEms" format="integer"/>
+        <!--最大长度-->
+        <attr name="maxLength" format="integer"/>
+    </declare-styleable>
+</resources>

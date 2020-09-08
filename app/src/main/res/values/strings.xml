@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">极速框架</string>
+    <!--公共-->
+    <string name="back">返回</string>
+    <!--主页-->
+    <string name="main_index">首页</string>
+    <string name="main_member">会员</string>
+    <string name="main_order">订单</string>
+    <string name="main_mine">我的</string>
+
+    <!--设置-->
+    <string name="settings_title">系统设置</string>
+    <string name="settings_language">系统语言</string>
+
+
+</resources>

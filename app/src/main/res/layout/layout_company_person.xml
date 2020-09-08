@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <View
+        android:id="@+id/v_height"
+        android:layout_width="wrap_content"
+        android:layout_height="49dp"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="5dp"
+            android:layout_height="25dp"
+            android:background="@drawable/shape_square_dark_blue" />
+
+        <ImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginLeft="20dp"
+            android:src="@mipmap/ic_launcher_round" />
+
+        <TextView
+            android:id="@+id/titleNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:text="随行人01"
+            android:textColor="@color/color_2E79CC"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <com.lxb.freeAndroid.project.views.EditInputView
+        android:id="@+id/eiv_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="25dp"
+        app:hintText="请输入真实姓名"
+        app:inputTitleText="真实姓名"
+        app:maxLength="10"
+        app:singleLine="true" />
+
+    <com.lxb.freeAndroid.project.views.EditInputView
+        android:id="@+id/eiv_idCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="49dp"
+        android:layout_marginRight="25dp"
+        app:hintText="请输入身份证号"
+        app:inputTitleText="身份证号"
+        app:inputType="number"
+        app:maxLength="30"
+        app:singleLine="true" />
+</LinearLayout>

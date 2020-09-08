@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">FreeAndroid</string>
+    <!--Comm-->
+    <string name="back">Back</string>
+    <!--Main-->
+    <string name="main_index">Index</string>
+    <string name="main_member">Member</string>
+    <string name="main_order">Order</string>
+    <string name="main_mine">Mine</string>
+
+    <!--Setting-->
+    <string name="settings_title">SystemSettings</string>
+    <string name="settings_language">SystemLanguage</string>
+</resources>

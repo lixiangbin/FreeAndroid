@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".project.modulesUI.mineModule.login.LoginActivity">
+
+    <LinearLayout
+        android:id="@+id/ll_login"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="80dp"
+            android:src="@mipmap/ic_launcher_round" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="45dp"
+            android:text="手机号"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/tv_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="+86 188 6666 5555"
+            android:textSize="15sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/color_line" />
+
+        <!--密码登录-->
+        <LinearLayout
+            android:id="@+id/ll_pwd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:text="登录密码"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/et_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@null"
+                android:hint="请输登录密码"
+                android:inputType="textPassword"
+                android:textSize="15sp" />
+        </LinearLayout>
+
+        <!--验证码登录-->
+        <RelativeLayout
+            android:id="@+id/rl_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="visible">
+
+            <TextView
+                android:id="@+id/tv_codeTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:text="验证码"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/et_code"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_codeTxt"
+                android:layout_marginTop="5dp"
+                android:background="@null"
+                android:hint="请输入验证码"
+                android:inputType="number"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_codeTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_codeTxt"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/shape_border_btn_blue_rectangle"
+                android:gravity="bottom"
+                android:text="获取验证码"
+                android:textColor="@color/color_2E79CC"
+                android:textSize="12sp" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/color_line" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp">
+
+            <Button
+                android:id="@+id/btn_login"
+                android:layout_width="105dp"
+                android:layout_height="45dp"
+                android:background="@drawable/shape_circle_dark_blue"
+                android:stateListAnimator="@null"
+                android:text="登录"
+                android:textColor="@color/white"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_changeWay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:paddingLeft="10dp"
+                android:paddingTop="6dp"
+                android:paddingBottom="6dp"
+                android:text="用验证码登录"
+                android:textColor="@color/color_2E79CC"
+                android:textSize="14sp" />
+        </RelativeLayout>
+
+
+    </LinearLayout>
+</LinearLayout>

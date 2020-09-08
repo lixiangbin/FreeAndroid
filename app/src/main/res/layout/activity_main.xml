@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".project.mainUI.MainActivity">
+
+    <!--Frame-->
+    <FrameLayout
+        android:id="@+id/fl_main"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/rg_bottomNavigation"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!--底部导航-->
+    <RadioGroup
+        android:id="@+id/rg_bottomNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/main_bottomNavigation"
+        android:orientation="horizontal"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <RadioButton
+            android:id="@+id/rb_cae"
+            style="@style/main_bottom_navigation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:drawableTop="@drawable/selector_main_bottom_navigation_icon_first"
+            android:text="@string/main_index" />
+
+        <RadioButton
+            android:id="@+id/rb_member"
+            style="@style/main_bottom_navigation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/selector_main_bottom_navigation_icon_secoud"
+            android:text="@string/main_member" />
+
+        <RadioButton
+            android:id="@+id/rb_connection"
+            style="@style/main_bottom_navigation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/selector_main_bottom_navigation_icon_third"
+            android:text="@string/main_order" />
+
+        <RadioButton
+            android:id="@+id/rb_mine"
+            style="@style/main_bottom_navigation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableTop="@drawable/selector_main_bottom_navigation_icon_fourth"
+            android:text="@string/main_mine" />
+
+    </RadioGroup>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

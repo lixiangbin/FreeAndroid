@@ -1,0 +1,32 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    repositories {
+        google()
+        //jcenter { url "http://jcenter.bintray.com/" }
+        jcenter()
+        mavenCentral()
+        maven { url "https://jitpack.io" }
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.4.2'
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        //jcenter { url "http://jcenter.bintray.com/" }
+        jcenter()
+        mavenCentral()
+        maven { url "https://maven.google.com" }
+        maven { url 'http://repo1.maven.org/maven2' }
+        maven { url 'https://dl.bintray.com/jetbrains/anko' }
+        maven { url 'https://jitpack.io' }
+
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
