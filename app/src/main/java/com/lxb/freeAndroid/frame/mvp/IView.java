@@ -16,9 +16,14 @@ import android.content.Context;
  */
 public interface IView {
 
-    //获取context
+    /**
+     * 获取context
+     * @return Context
+     */
     Context getContext();
 
-    //信息提示
+    /**
+     * 信息提示
+     */
     void showMsg(String msg);
 }

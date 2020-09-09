@@ -1,4 +1,4 @@
-package com.lxb.freeAndroid.project.mainUI.fragment.settingFragment;
+package com.lxb.freeAndroid.project.mainUI.fragment.fourthFragment;
 
 import android.os.Bundle;
 import android.text.Editable;
@@ -26,21 +26,21 @@ import com.lxb.freeAndroid.project.utils.ToastUtils.ToastUtil;
  * 修改内容：
  */
 
-public class MineFragment extends BaseFragment<MinePresenter> implements MineContract.CaeView {
+public class FourthFragment extends BaseFragment<FourthPresenter> implements FourthContract.CaeView {
 
 
     private TextView tv_nationality;//国籍
     private EditText et_phone;//手机号
 
-    public static MineFragment newInstance(Bundle bundle) {
-        MineFragment fragment = new MineFragment();
+    public static FourthFragment newInstance(Bundle bundle) {
+        FourthFragment fragment = new FourthFragment();
         fragment.setArguments(bundle);
         return fragment;
     }
 
     @Override
-    protected MinePresenter initPresenter() {
-        return new MinePresenter(this);
+    protected FourthPresenter initPresenter() {
+        return new FourthPresenter(this);
     }
 
     @Override

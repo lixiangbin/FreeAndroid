@@ -3,7 +3,7 @@ package com.lxb.freeAndroid.project.mainUI;
 /**
  * 业务名:main实体类
  * 功能说明:
- * 编写日期: xxxx-05-08.
+ * 编写日期: 2020-05-08.
  * 作者: 李相斌
  * <p/>
  * 历史记录
@@ -12,6 +12,6 @@ package com.lxb.freeAndroid.project.mainUI;
  * 修改内容：
  */
 public class MainBean {
-    int id;
-    String num;
+   public int id;
+   public String num;
 }

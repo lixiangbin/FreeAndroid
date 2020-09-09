@@ -1,4 +1,4 @@
-package com.lxb.freeAndroid.project.mainUI.fragment.settingFragment;
+package com.lxb.freeAndroid.project.mainUI.fragment.thirdFragment;
 
 import com.lxb.freeAndroid.frame.base.BaseResponseBean;
 import com.lxb.freeAndroid.frame.http.ResponseObserver;
@@ -18,7 +18,7 @@ import java.util.HashMap;
  * 修改人：
  * 修改内容：
  */
-public class MineContract {
+public class ThirdContract {
     interface CaeView extends IView{
 
     }

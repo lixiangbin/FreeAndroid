@@ -1,4 +1,4 @@
-package com.lxb.freeAndroid.project.mainUI.fragment.memberFragment;
+package com.lxb.freeAndroid.project.mainUI.fragment.secondFragment;
 
 import android.os.Bundle;
 import android.view.View;
@@ -19,18 +19,18 @@ import com.lxb.freeAndroid.project.utils.ToastUtils.ToastUtil;
  * 修改内容：
  */
 
-public class MemberFragment extends BaseFragment<MemberPresenter> implements MemberContract.CaeView {
+public class SecondFragment extends BaseFragment<SecondPresenter> implements SecondContract.CaeView {
 
 
-    public static MemberFragment newInstance(Bundle bundle) {
-        MemberFragment fragment = new MemberFragment();
+    public static SecondFragment newInstance(Bundle bundle) {
+        SecondFragment fragment = new SecondFragment();
         fragment.setArguments(bundle);
         return fragment;
     }
 
     @Override
-    protected MemberPresenter initPresenter() {
-        return new MemberPresenter(this);
+    protected SecondPresenter initPresenter() {
+        return new SecondPresenter(this);
     }
 
     @Override

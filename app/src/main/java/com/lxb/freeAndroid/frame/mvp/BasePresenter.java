@@ -46,6 +46,5 @@ public abstract class BasePresenter<M extends IModel, V extends IView> implement
             this.model = null;
         }
         this.view = null;
-        System.gc();
     }
 }

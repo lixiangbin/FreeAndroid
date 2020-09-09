@@ -1,4 +1,4 @@
-package com.lxb.freeAndroid.project.mainUI.fragment.homeFragment;
+package com.lxb.freeAndroid.project.mainUI.fragment.secondFragment;
 
 import com.lxb.freeAndroid.frame.base.BaseResponseBean;
 import com.lxb.freeAndroid.frame.http.ApiUrl;
@@ -18,7 +18,7 @@ import java.util.HashMap;
  * 修改人：
  * 修改内容：
  */
-public class CaeModelImpl extends BaseModel implements CaeContract.CaeModel {
+public class SecondModelImpl extends BaseModel implements SecondContract.CaeModel {
     @Override
     public void requestData(HashMap<String, Object> paramMap, ResponseObserver<BaseResponseBean> responseObserver) {
       requestNetworkDefault(paramMap,responseObserver,ApiUrl.API_TEST);

@@ -38,7 +38,7 @@ public class BaseModel implements IModel {
      * 创建时期：xxxx-08-26
      * 方法说明：默认请求
      */
-    protected void requestNetworkDefault(Map<String, Object> map, ResponseObserver<BaseResponseBean> responseObserver, String url) {
+    protected <T> void requestNetworkDefault(Map<String, Object> map, ResponseObserver<T> responseObserver, String url) {
         Service apiService = RetrofitManager.getRetrofitService(Service.class);
         configRetrofitAndRx(apiService, map, responseObserver, url);
     }
@@ -48,7 +48,7 @@ public class BaseModel implements IModel {
      * 创建时期：xxxx-08-27
      * 方法说明：可重置超时时间的请求
      */
-    protected void requestNetworkResetTimeut(Map<String, Object> map, ResponseObserver<BaseResponseBean> responseObserver, String url, long connectTimeouts, long readTimeouts, long writeTimeouts) {
+    protected  <T> void requestNetworkResetTimeOut(Map<String, Object> map, ResponseObserver<T> responseObserver, String url, long connectTimeouts, long readTimeouts, long writeTimeouts) {
         Service service = RetrofitManager.getRetrofitService(Service.class, connectTimeouts, readTimeouts, writeTimeouts);
         configRetrofitAndRx(service, map, responseObserver, url);
     }
@@ -59,7 +59,7 @@ public class BaseModel implements IModel {
      * 创建时期：xxxx-08-27
      * 方法说明：提取封装 配置Retrofit与Rx
      */
-    private void configRetrofitAndRx(Service service, Map<String, Object> map, ResponseObserver<BaseResponseBean> responseObserver, String url) {
+    private <T> void configRetrofitAndRx(Service service, Map<String, Object> map, ResponseObserver<T> responseObserver, String url) {
         service.executePost(url, setParams(map))
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
@@ -119,7 +119,7 @@ public class BaseModel implements IModel {
         //解除rx订阅
         if (mCompositeDisposable != null) {
             mCompositeDisposable.clear();
+            mCompositeDisposable = null;
         }
-        mCompositeDisposable = null;
     }
 }

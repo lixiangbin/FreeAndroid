@@ -1,4 +1,4 @@
-package com.lxb.freeAndroid.project.mainUI.fragment.homeFragment;
+package com.lxb.freeAndroid.project.mainUI.fragment.firstFragment;
 
 import com.lxb.freeAndroid.frame.base.BaseResponseBean;
 import com.lxb.freeAndroid.frame.http.ResponseObserver;
@@ -18,7 +18,7 @@ import java.util.HashMap;
  * 修改人：
  * 修改内容：
  */
-public class CaeContract {
+public class FirstContract {
     interface CaeView extends IView{
 
     }

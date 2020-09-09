@@ -1,4 +1,4 @@
-package com.lxb.freeAndroid.project.mainUI.fragment.homeFragment;
+package com.lxb.freeAndroid.project.mainUI.fragment.firstFragment;
 
 import com.lxb.freeAndroid.frame.base.BaseResponseBean;
 import com.lxb.freeAndroid.frame.http.ResponseObserver;
@@ -15,14 +15,14 @@ import com.lxb.freeAndroid.frame.mvp.BasePresenter;
  * 修改人：
  * 修改内容：
  */
-public class CaePresenter extends BasePresenter<CaeContract.CaeModel, CaeContract.CaeView>  {
-    public CaePresenter(CaeContract.CaeView view) {
+public class FirstPresenter extends BasePresenter<FirstContract.CaeModel, FirstContract.CaeView>  {
+    public FirstPresenter(FirstContract.CaeView view) {
         super(view);
     }
 
     @Override
-    protected CaeContract.CaeModel getModelImpl() {
-        return new CaeModelImpl();
+    protected FirstContract.CaeModel getModelImpl() {
+        return new FirstModelImpl();
     }
 
     public void requestTest(){

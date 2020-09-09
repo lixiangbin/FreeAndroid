@@ -24,14 +24,14 @@ import retrofit2.HttpException;
  * 修改人：
  * 修改内容：
  */
-public abstract class ResponseObserver<T extends BaseResponseBean> implements Observer<T> {
+public abstract class ResponseObserver<T> implements Observer<BaseResponseBean<T>> {
 
     public ResponseObserver() {
     }
 
 
     @Override
-    public void onNext(T responseBean) {
+    public void onNext(BaseResponseBean<T> responseBean) {
 //        if (view != null && view.getContext() != null) {
 //            Activity activity = (Activity) view.getContext();
 //            if (activity.isFinishing()) {
@@ -41,7 +41,7 @@ public abstract class ResponseObserver<T extends BaseResponseBean> implements Ob
 
         //TODO...待根据接口文档具体调整
         if (null != responseBean && responseBean.succeed == 1) {
-            onSuccess(responseBean);
+            onSuccess(responseBean.result);
         } else {
             onFail(responseBean);
         }
@@ -80,7 +80,7 @@ public abstract class ResponseObserver<T extends BaseResponseBean> implements Ob
         } else if ((e instanceof UnknownHostException) || (e instanceof ConnectTimeoutException) || (e instanceof SocketTimeoutException)) {
             ToastUtil.toastShow(AppApplication.getInstance().getApplicationContext(), "操作失败，请检查您的网络");
             onNetError(e);
-        }else {
+        } else {
             ToastUtil.toastShow(AppApplication.getInstance().getApplicationContext(), "未知异常");
             e.printStackTrace();
             onNetError(e);
@@ -92,7 +92,7 @@ public abstract class ResponseObserver<T extends BaseResponseBean> implements Ob
     public abstract void onSuccess(T responseBean);
 
     //请求失败
-    public abstract void onFail(T responseBean);
+    public abstract void onFail(BaseResponseBean responseBean);
 
     //网络错误
     public void onNetError(Throwable e) {

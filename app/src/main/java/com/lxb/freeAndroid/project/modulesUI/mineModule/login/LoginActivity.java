@@ -91,11 +91,7 @@ public class LoginActivity extends BasesActivity<LoginPresenter> implements Logi
             @Override
             public void onTick(long millisUntilFinished) {
                 long sec = millisUntilFinished / 1000;
-                if (sec < 10) {
-                    tvCodeTime.setText("0" + sec + "s后重新获取");
-                } else {
-                    tvCodeTime.setText(sec + "s后重新获取");
-                }
+                tvCodeTime.setText(sec < 10 ? "0" + sec + "s后重新获取" : sec + "s后重新获取");
                 tvCodeTime.setClickable(false);
                 tvCodeTime.setTextColor(ContextCompat.getColor(getContext(), R.color.gray));
                 tvCodeTime.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.shape_border_btn_gray_rectangle));

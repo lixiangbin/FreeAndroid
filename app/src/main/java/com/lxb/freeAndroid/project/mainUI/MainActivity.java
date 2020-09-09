@@ -13,13 +13,16 @@ import android.widget.Toast;
 
 import androidx.fragment.app.FragmentManager;
 
+import com.bumptech.glide.Glide;
 import com.lxb.freeAndroid.R;
 import com.lxb.freeAndroid.frame.base.BasesActivity;
 import com.lxb.freeAndroid.frame.base.OnFragmentInteractionListener;
-import com.lxb.freeAndroid.project.mainUI.fragment.homeFragment.CaeFragment;
-import com.lxb.freeAndroid.project.mainUI.fragment.orderFragment.ConnectionsFragment;
-import com.lxb.freeAndroid.project.mainUI.fragment.memberFragment.MemberFragment;
-import com.lxb.freeAndroid.project.mainUI.fragment.settingFragment.MineFragment;
+import com.lxb.freeAndroid.project.mainUI.fragment.firstFragment.FirstFragment;
+import com.lxb.freeAndroid.project.mainUI.fragment.fourthFragment.FourthFragment;
+import com.lxb.freeAndroid.project.mainUI.fragment.secondFragment.SecondFragment;
+import com.lxb.freeAndroid.project.mainUI.fragment.thirdFragment.ThirdFragment;
+import com.lxb.freeAndroid.project.mainUI.presenter.MainPresenter;
+import com.lxb.freeAndroid.project.utils.GlideUtils.GlideApp;
 import com.lxb.freeAndroid.project.utils.ToastUtils.ToastUtil;
 
 import butterknife.BindView;
@@ -38,7 +41,6 @@ import butterknife.BindView;
 
 public class MainActivity extends BasesActivity<MainPresenter> implements MainContract.MainView, RadioGroup.OnCheckedChangeListener, OnFragmentInteractionListener {
 
-
     @BindView(R.id.rb_cae)
     RadioButton rbCae;
     @BindView(R.id.fl_main)
@@ -53,13 +55,17 @@ public class MainActivity extends BasesActivity<MainPresenter> implements MainCo
     RadioGroup rgBottomNavigation;
 
     //东盟
-    private CaeFragment caeFragment;
+    private FirstFragment firstFragment;
+    private final String TAG_FirstFragment = "TAG_FirstFragment";
     //会员
-    private MemberFragment memberFragment;
+    private SecondFragment secondFragment;
+    private final String TAG_SecondFragment = "TAG_SecondFragment";
     //人脉
-    private ConnectionsFragment connectionsFragment;
+    private ThirdFragment thirdFragment;
+    private final String TAG_ThirdFragment = "TAG_ThirdFragment";
     //我的
-    private MineFragment mineFragment;
+    private FourthFragment fourthFragment;
+    private final String TAG_FourthFragment = "TAG_FourthFragment";
 
 
     //获取FragmentManager
@@ -80,12 +86,13 @@ public class MainActivity extends BasesActivity<MainPresenter> implements MainCo
         rgBottomNavigation.setOnCheckedChangeListener(this);
         //防止app重启或所依附的Activity被GC后Fragment穿透叠加
         if (savedInstanceState != null) {
-            caeFragment = (CaeFragment) fragmentManager.findFragmentByTag("caeFragment");
-            memberFragment = (MemberFragment) fragmentManager.findFragmentByTag("memberFragment");
-            connectionsFragment = (ConnectionsFragment) fragmentManager.findFragmentByTag("connectionsFragment");
-            mineFragment = (MineFragment) fragmentManager.findFragmentByTag("mineFragment");
+            firstFragment = (FirstFragment) fragmentManager.findFragmentByTag(TAG_FirstFragment);
+            secondFragment = (SecondFragment) fragmentManager.findFragmentByTag(TAG_SecondFragment);
+            thirdFragment = (ThirdFragment) fragmentManager.findFragmentByTag(TAG_ThirdFragment);
+            fourthFragment = (FourthFragment) fragmentManager.findFragmentByTag(TAG_FourthFragment);
         }
         showCaeFragment(null);
+        presenter.login("123456");
     }
 
 
@@ -129,80 +136,80 @@ public class MainActivity extends BasesActivity<MainPresenter> implements MainCo
 
     /**
      * 作者：李相斌
-     * 创建时期：xxxx-09-02
-     * 方法说明：显示东盟fragment
+     * 创建时期：2019-09-02
+     * 方法说明：显示第一个fragment
      */
     public void showCaeFragment(Bundle bundleParams) {
         // 先隐藏掉所有Fragment
         hideFragments();
-        if (caeFragment == null) {
-            caeFragment = CaeFragment.newInstance(bundleParams);
+        if (firstFragment == null) {
+            firstFragment = FirstFragment.newInstance(bundleParams);
         }
-        if (!caeFragment.isAdded() && !caeFragment.findTag()) {
-            fragmentManager.beginTransaction().add(R.id.fl_main, caeFragment, "caeFragment").commitAllowingStateLoss();
-            caeFragment.setTag(true);
+        if (!firstFragment.isAdded() && !firstFragment.findTag()) {
+            fragmentManager.beginTransaction().add(R.id.fl_main, firstFragment, TAG_FirstFragment).commitAllowingStateLoss();
+            firstFragment.setTag(true);
         }
-        fragmentManager.beginTransaction().show(caeFragment).commitAllowingStateLoss();
+        fragmentManager.beginTransaction().show(firstFragment).commitAllowingStateLoss();
         //导航按钮状态
         rbCae.setChecked(true);
     }
 
     /**
      * 作者：李相斌
-     * 创建时期：xxxx-09-02
-     * 方法说明：显示人脉fragment
-     */
-    public void showConnectionsFragment(Bundle bundleParams) {
-        // 先隐藏掉所有Fragment
-        hideFragments();
-        if (connectionsFragment == null) {
-            connectionsFragment = ConnectionsFragment.newInstance(bundleParams);
-        }
-        if (!connectionsFragment.isAdded() && !connectionsFragment.findTag()) {
-            fragmentManager.beginTransaction().add(R.id.fl_main, connectionsFragment, "connectionsFragment").commitAllowingStateLoss();
-            connectionsFragment.setTag(true);
-        }
-        fragmentManager.beginTransaction().show(connectionsFragment).commitAllowingStateLoss();
-        //导航按钮状态
-        rbConnection.setChecked(true);
-    }
-
-    /**
-     * 作者：李相斌
-     * 创建时期：xxxx-09-02
-     * 方法说明：显示会员fragment
+     * 创建时期：2019-09-02
+     * 方法说明：显示第二个fragment
      */
     public void showMemberFragment(Bundle bundleParams) {
         // 先隐藏掉所有Fragment
         hideFragments();
-        if (memberFragment == null) {
-            memberFragment = MemberFragment.newInstance(bundleParams);
+        if (secondFragment == null) {
+            secondFragment = SecondFragment.newInstance(bundleParams);
         }
-        if (!memberFragment.isAdded() && !memberFragment.findTag()) {
-            fragmentManager.beginTransaction().add(R.id.fl_main, memberFragment, "memberFragment").commitAllowingStateLoss();
-            memberFragment.setTag(true);
+        if (!secondFragment.isAdded() && !secondFragment.findTag()) {
+            fragmentManager.beginTransaction().add(R.id.fl_main, secondFragment, TAG_SecondFragment).commitAllowingStateLoss();
+            secondFragment.setTag(true);
         }
-        fragmentManager.beginTransaction().show(memberFragment).commitAllowingStateLoss();
+        fragmentManager.beginTransaction().show(secondFragment).commitAllowingStateLoss();
         //导航按钮状态
         rbMember.setChecked(true);
     }
 
     /**
      * 作者：李相斌
-     * 创建时期：xxxx-09-02
-     * 方法说明：显示我的fragment
+     * 创建时期：2019-09-02
+     * 方法说明：显示第三个fragment
+     */
+    public void showConnectionsFragment(Bundle bundleParams) {
+        // 先隐藏掉所有Fragment
+        hideFragments();
+        if (thirdFragment == null) {
+            thirdFragment = ThirdFragment.newInstance(bundleParams);
+        }
+        if (!thirdFragment.isAdded() && !thirdFragment.findTag()) {
+            fragmentManager.beginTransaction().add(R.id.fl_main, thirdFragment, TAG_ThirdFragment).commitAllowingStateLoss();
+            thirdFragment.setTag(true);
+        }
+        fragmentManager.beginTransaction().show(thirdFragment).commitAllowingStateLoss();
+        //导航按钮状态
+        rbConnection.setChecked(true);
+    }
+
+    /**
+     * 作者：李相斌
+     * 创建时期：2019-09-02
+     * 方法说明：显示第四个fragment
      */
     public void showMineFragment(Bundle bundleParams) {
         // 先隐藏掉所有Fragment
         hideFragments();
-        if (mineFragment == null) {
-            mineFragment = MineFragment.newInstance(bundleParams);
+        if (fourthFragment == null) {
+            fourthFragment = FourthFragment.newInstance(bundleParams);
         }
-        if (!mineFragment.isAdded() && !mineFragment.findTag()) {
-            fragmentManager.beginTransaction().add(R.id.fl_main, mineFragment, "mineFragment").commitAllowingStateLoss();
-            mineFragment.setTag(true);
+        if (!fourthFragment.isAdded() && !fourthFragment.findTag()) {
+            fragmentManager.beginTransaction().add(R.id.fl_main, fourthFragment, TAG_FourthFragment).commitAllowingStateLoss();
+            fourthFragment.setTag(true);
         }
-        fragmentManager.beginTransaction().show(mineFragment).commitAllowingStateLoss();
+        fragmentManager.beginTransaction().show(fourthFragment).commitAllowingStateLoss();
         //导航按钮状态
         rbMine.setChecked(true);
     }
@@ -210,21 +217,21 @@ public class MainActivity extends BasesActivity<MainPresenter> implements MainCo
 
     /**
      * 作者：李相斌
-     * 创建时期：xxxx-09-02
+     * 创建时期：2019-09-02
      * 方法说明：隐藏所有fragment
      */
     public void hideFragments() {
-        if (caeFragment != null) {
-            fragmentManager.beginTransaction().hide(caeFragment).commitAllowingStateLoss();
+        if (firstFragment != null) {
+            fragmentManager.beginTransaction().hide(firstFragment).commitAllowingStateLoss();
         }
-        if (memberFragment != null) {
-            fragmentManager.beginTransaction().hide(memberFragment).commitAllowingStateLoss();
+        if (secondFragment != null) {
+            fragmentManager.beginTransaction().hide(secondFragment).commitAllowingStateLoss();
         }
-        if (connectionsFragment != null) {
-            fragmentManager.beginTransaction().hide(connectionsFragment).commitAllowingStateLoss();
+        if (thirdFragment != null) {
+            fragmentManager.beginTransaction().hide(thirdFragment).commitAllowingStateLoss();
         }
-        if (mineFragment != null) {
-            fragmentManager.beginTransaction().hide(mineFragment).commitAllowingStateLoss();
+        if (fourthFragment != null) {
+            fragmentManager.beginTransaction().hide(fourthFragment).commitAllowingStateLoss();
         }
     }
 

@@ -1,4 +1,4 @@
-package com.lxb.freeAndroid.project.mainUI.fragment.settingFragment;
+package com.lxb.freeAndroid.project.mainUI.fragment.thirdFragment;
 
 import com.lxb.freeAndroid.frame.base.BaseResponseBean;
 import com.lxb.freeAndroid.frame.http.ApiUrl;
@@ -18,7 +18,7 @@ import java.util.HashMap;
  * 修改人：
  * 修改内容：
  */
-public class MineModelimpl extends BaseModel implements MineContract.CaeModel {
+public class ThirdModelImpl extends BaseModel implements ThirdContract.CaeModel {
     @Override
     public void requestData(HashMap<String, Object> paramMap, ResponseObserver<BaseResponseBean> responseObserver) {
       requestNetworkDefault(paramMap,responseObserver,ApiUrl.API_TEST);

@@ -6,7 +6,6 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-
 import com.lxb.freeAndroid.R;
 import com.lxb.freeAndroid.frame.mvp.BasePresenter;
 import com.lxb.freeAndroid.project.views.CommTitleBar;
@@ -67,8 +66,7 @@ public abstract class BasesActivity<P extends BasePresenter> extends AppCompatAc
      * 创建时期：xxxx-09-23
      * 方法说明：在setContentView前执行
      */
-    protected void setContentViewBefore() {
-    }
+    protected void setContentViewBefore() {}
 
     /**
      * 作者：李相斌

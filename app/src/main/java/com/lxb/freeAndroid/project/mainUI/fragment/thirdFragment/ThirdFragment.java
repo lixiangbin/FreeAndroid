@@ -1,4 +1,4 @@
-package com.lxb.freeAndroid.project.mainUI.fragment.orderFragment;
+package com.lxb.freeAndroid.project.mainUI.fragment.thirdFragment;
 
 import android.os.Bundle;
 import android.view.View;
@@ -19,18 +19,18 @@ import com.lxb.freeAndroid.project.utils.ToastUtils.ToastUtil;
  * 修改内容：
  */
 
-public class ConnectionsFragment extends BaseFragment<ConnectionsPresenter> implements ConnectionsContract.CaeView {
+public class ThirdFragment extends BaseFragment<ThirdPresenter> implements ThirdContract.CaeView {
 
 
-    public static ConnectionsFragment newInstance(Bundle bundle) {
-        ConnectionsFragment fragment = new ConnectionsFragment();
+    public static ThirdFragment newInstance(Bundle bundle) {
+        ThirdFragment fragment = new ThirdFragment();
         fragment.setArguments(bundle);
         return fragment;
     }
 
     @Override
-    protected ConnectionsPresenter initPresenter() {
-        return new ConnectionsPresenter(this);
+    protected ThirdPresenter initPresenter() {
+        return new ThirdPresenter(this);
     }
 
     @Override

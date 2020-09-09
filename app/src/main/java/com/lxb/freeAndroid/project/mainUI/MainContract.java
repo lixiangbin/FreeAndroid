@@ -1,6 +1,5 @@
 package com.lxb.freeAndroid.project.mainUI;
 
-import com.lxb.freeAndroid.frame.base.BaseResponseBean;
 import com.lxb.freeAndroid.frame.http.ResponseObserver;
 import com.lxb.freeAndroid.frame.mvp.IModel;
 import com.lxb.freeAndroid.frame.mvp.IView;
@@ -21,17 +20,17 @@ import java.util.HashMap;
 public class MainContract {
 
 
-    interface MainView extends IView {
+   public interface MainView extends IView {
         //登录结果
         void setLoginResult(String result);
     }
 
-    interface MainModel extends IModel {
+   public interface MainModel extends IModel {
         //登录请求
-        void login(HashMap<String, Object> paramMap, ResponseObserver<BaseResponseBean> responseObserver);
+        void login(HashMap<String, Object> paramMap, ResponseObserver<MainBean> responseObserver);
 
         //退出请求
-        void quit(HashMap<String, Object> paramMap, ResponseObserver<BaseResponseBean> responseObserver);
+        void quit(HashMap<String, Object> paramMap, ResponseObserver<MainBean> responseObserver);
     }
 
 

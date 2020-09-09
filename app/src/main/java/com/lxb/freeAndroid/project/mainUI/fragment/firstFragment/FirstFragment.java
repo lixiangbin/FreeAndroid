@@ -1,4 +1,4 @@
-package com.lxb.freeAndroid.project.mainUI.fragment.homeFragment;
+package com.lxb.freeAndroid.project.mainUI.fragment.firstFragment;
 
 import android.os.Bundle;
 import android.view.View;
@@ -22,18 +22,18 @@ import butterknife.OnClick;
  * 修改内容：
  */
 
-public class CaeFragment extends BaseFragment<CaePresenter> implements CaeContract.CaeView {
+public class FirstFragment extends BaseFragment<FirstPresenter> implements FirstContract.CaeView {
 
 
-    public static CaeFragment newInstance(Bundle bundle) {
-        CaeFragment fragment = new CaeFragment();
+    public static FirstFragment newInstance(Bundle bundle) {
+        FirstFragment fragment = new FirstFragment();
         fragment.setArguments(bundle);
         return fragment;
     }
 
     @Override
-    protected CaePresenter initPresenter() {
-        return new CaePresenter(this);
+    protected FirstPresenter initPresenter() {
+        return new FirstPresenter(this);
     }
 
     @Override

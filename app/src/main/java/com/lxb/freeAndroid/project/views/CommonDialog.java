@@ -48,7 +48,7 @@ public class CommonDialog extends Dialog implements View.OnClickListener {
     /*对齐方式*/
     private int gravity;
 
-    boolean constructFlag;
+    private boolean constructFlag;
 
 
     private OnConfirmListener onConfirmListener;
@@ -154,6 +154,15 @@ public class CommonDialog extends Dialog implements View.OnClickListener {
 
     public CommonDialog isShowCancel(boolean is) {
         isShowCancel = is;
+        return this;
+    }
+
+    /**
+     * 是否加粗标题
+     */
+    boolean isTitleBold;
+    public CommonDialog setTitleBold(boolean is) {
+        isTitleBold = is;
         return this;
     }
 
@@ -330,6 +339,13 @@ public class CommonDialog extends Dialog implements View.OnClickListener {
         if (!TextUtils.isEmpty(title)) {
             tv_title.setText(title);
         }
+
+        //文字样式
+        //标题是否加粗
+        if(isTitleBold){
+            tv_title.getPaint().setFakeBoldText(true);
+        }
+
         //是否允许点击外部消失
         setCanceledOnTouchOutside(isCanceledOnTouchOutside);
         //是否允许响应back按键
@@ -376,22 +392,18 @@ public class CommonDialog extends Dialog implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.confirm:
-                if (onConfirmListener != null) {
-                    onConfirmListener.onClick(this);
-                }
+        int i = v.getId();
+        if (i == R.id.confirm) {
+            if (onConfirmListener != null) {
+                onConfirmListener.onClick(this);
+            }
+            this.dismiss();
+        } else if (i == R.id.cancel) {
+            if (onCancelListener != null) {
+                onCancelListener.onClick(this);
+            } else {
                 this.dismiss();
-                break;
-            case R.id.cancel:
-                if (onCancelListener != null) {
-                    onCancelListener.onClick(this);
-                } else {
-                    this.dismiss();
-                }
-                break;
-            default:
-                break;
+            }
         }
     }
 
@@ -399,14 +411,15 @@ public class CommonDialog extends Dialog implements View.OnClickListener {
      * 确定按钮监听
      */
     public interface OnConfirmListener {
-        void onClick(Dialog dialog);
+        void onClick(CommonDialog dialog);
     }
 
     /**
      * 取消按钮监听
      */
     public interface OnCancelListener {
-        void onClick(Dialog dialog);
+        void onClick(CommonDialog dialog);
     }
+
 
 }
