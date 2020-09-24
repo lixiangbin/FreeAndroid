@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".project.modulesUI.mineModule.SettingsActivity">
+    tools:context=".project.modulesDemo.mineModule.SettingsActivity">
 
     <com.lxb.freeAndroid.project.views.CommTitleBar
         android:id="@+id/titleBar"
@@ -43,6 +43,23 @@
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:layout_weight="1" />
+
+
+        <TextView
+            android:id="@+id/tv_autoLan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_languageAuto"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
+
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="15dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/black" />
 
         <TextView
             android:id="@+id/tv_chinese"
@@ -90,7 +107,7 @@
             android:id="@+id/tv_currentVersion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="当前版本"
+            android:text="当前版本："
             android:textColor="@color/black"
             android:textSize="15sp" />
 
@@ -128,7 +145,7 @@
             android:id="@+id/tv_clearCatch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="清除缓存"
+            android:text="清除缓存："
             android:textColor="@color/black"
             android:textSize="15sp" />
 
@@ -146,41 +163,6 @@
             android:textSize="15sp" />
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        android:background="@color/gray" />
-
-    <!--关于我们-->
-    <LinearLayout
-        android:id="@+id/rl_about"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/tv_about"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="关于我们"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="19dp"
-            android:layout_weight="1" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/arrow_right_black" />
-    </LinearLayout>
 
     <View
         android:layout_width="match_parent"

@@ -1,12 +1,17 @@
 package com.lxb.freeAndroid.frame.mvp;
 
 
+import android.util.Log;
+
 import com.lxb.freeAndroid.frame.base.AppConfig;
 import com.lxb.freeAndroid.frame.base.BaseResponseBean;
 import com.lxb.freeAndroid.frame.http.ResponseObserver;
 import com.lxb.freeAndroid.frame.http.RetrofitManager;
 import com.lxb.freeAndroid.frame.http.Service;
+import com.lxb.freeAndroid.project.utils.AppUtils;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import io.reactivex.Observer;
@@ -48,7 +53,7 @@ public class BaseModel implements IModel {
      * 创建时期：xxxx-08-27
      * 方法说明：可重置超时时间的请求
      */
-    protected  <T> void requestNetworkResetTimeOut(Map<String, Object> map, ResponseObserver<T> responseObserver, String url, long connectTimeouts, long readTimeouts, long writeTimeouts) {
+    protected <T> void requestNetworkResetTimeOut(Map<String, Object> map, ResponseObserver<T> responseObserver, String url, long connectTimeouts, long readTimeouts, long writeTimeouts) {
         Service service = RetrofitManager.getRetrofitService(Service.class, connectTimeouts, readTimeouts, writeTimeouts);
         configRetrofitAndRx(service, map, responseObserver, url);
     }
@@ -109,7 +114,9 @@ public class BaseModel implements IModel {
      * 方法说明：配置公共参数
      */
     private Map<String, Object> setParams(Map<String, Object> map) {
+        map = map != null ? map : new LinkedHashMap<>();
         map.put("ver", AppConfig.VER);
+        map.put("deviceId", AppUtils.getDeviceId());
         //TODO...
         return map;
     }

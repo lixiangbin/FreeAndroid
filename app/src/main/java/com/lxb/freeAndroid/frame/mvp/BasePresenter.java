@@ -1,6 +1,7 @@
 package com.lxb.freeAndroid.frame.mvp;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 /**
  * 业务名:BasePresenter
@@ -16,7 +17,7 @@ import java.util.HashMap;
 public abstract class BasePresenter<M extends IModel, V extends IView> implements IPresenter {
     protected M model;
     protected V view;
-    protected HashMap<String, Object> paramsMap = new HashMap<>();
+    protected LinkedHashMap<String, Object> paramsMap = new LinkedHashMap<>();
 
     public BasePresenter(V view) {
         this.view = view;

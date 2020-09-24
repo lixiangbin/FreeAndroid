@@ -9,7 +9,7 @@ buildscript {
         maven { url "https://jitpack.io" }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.4.2'
+        classpath 'com.android.tools.build:gradle:3.6.4'
     }
 }
 
@@ -20,9 +20,15 @@ allprojects {
         jcenter()
         mavenCentral()
         maven { url "https://maven.google.com" }
-        maven { url 'http://repo1.maven.org/maven2' }
+        //maven { url 'http://repo1.maven.org/maven2' } //一些库国内无法访问，以下使用阿里云代理镜像替换
         maven { url 'https://dl.bintray.com/jetbrains/anko' }
         maven { url 'https://jitpack.io' }
+
+        //使用阿里云代理镜像
+        maven { url 'https://maven.aliyun.com/repository/public/' }
+        maven { url 'https://maven.aliyun.com/repository/google/' }
+        maven { url 'https://maven.aliyun.com/repository/jcenter' }
+
 
     }
 }

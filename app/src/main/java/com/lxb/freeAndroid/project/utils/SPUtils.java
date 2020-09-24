@@ -29,7 +29,7 @@ import java.util.Map;
  */
 public class SPUtils {
 
-    private static final String FILE_NAME = "caeForum_SP_data";
+    private static final String FILE_NAME = "freeAndroid_SP_data";
 
     /**
      * 作者：李相斌

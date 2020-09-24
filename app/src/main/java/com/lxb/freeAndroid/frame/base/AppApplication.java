@@ -3,12 +3,17 @@ package com.lxb.freeAndroid.frame.base;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.Application;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 
-import com.lxb.freeAndroid.project.mainUI.MainActivity;
+import com.lxb.freeAndroid.project.mainDemo.MainActivity;
+import com.lxb.freeAndroid.project.modulesDemo.mineModule.login.LoginActivity;
 import com.lxb.freeAndroid.project.utils.LanguageUtils;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Stack;
 
@@ -84,7 +89,6 @@ public class AppApplication extends Application {
     }
 
     public void finishAllActivity(boolean isCoverMainActivity) {
-        //包括MainActivity
         finishAct(isCoverMainActivity);
     }
 
@@ -121,6 +125,67 @@ public class AppApplication extends Application {
         }
         android.os.Process.killProcess(android.os.Process.myPid());
         System.exit(0);
+    }
+
+    /**
+     * 作者：李相斌
+     * 创建时期：
+     * 方法说明：判断某个Activity是否在前台
+     */
+    public boolean isForeground(String ActivityClassName) {
+        if (ActivityClassName == null || TextUtils.isEmpty(ActivityClassName))
+            return false;
+        ActivityManager am = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        List<ActivityManager.RunningTaskInfo> list = am.getRunningTasks(1);
+        if (list != null && list.size() > 0) {
+            ComponentName cpn = list.get(0).topActivity;
+            return ActivityClassName.equals(cpn.getClassName());
+        }
+        return false;
+    }
+
+    /**
+     * 作者：李相斌
+     * 创建时期：
+     * 方法说明：统一跳转
+     */
+    public void startActivity(Class<? extends Activity> activityCls) {
+        startActivity(activityCls, null);
+    }
+
+    public void startActivity(Class<? extends Activity> activityCls, Bundle bundle) {
+        Intent intent = new Intent(this, activityCls);
+        if (bundle != null) {
+            intent.putExtras(bundle);
+        }
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
+
+    /**
+     * 作者：李相斌
+     * 创建时期：2019-12-13
+     * 方法说明：退出到登录
+     */
+    public void finishAllActivityToLogin() {
+        if (activityList == null) {
+            return;
+        }
+        for (Activity activity : activityList) {
+            if (activity == null) {
+                continue;
+            }
+            if (activity.getClass() == LoginActivity.class) {
+                continue;
+            }
+            activity.finish();
+        }
+        //移除已经finish的Activity
+        for (Iterator<Activity> it = activityList.iterator(); it.hasNext(); ) {
+            if (it.next() == null) {
+                it.remove();
+            }
+        }
     }
 
     @Override

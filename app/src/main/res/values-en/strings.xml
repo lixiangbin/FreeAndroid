@@ -10,5 +10,9 @@
 
     <!--Setting-->
     <string name="settings_title">SystemSettings</string>
-    <string name="settings_language">SystemLanguage</string>
+    <string name="settings_language">AppLanguage：</string>
+    <string name="home_setting">Setting</string>
+    <string name="home_testApi">TestApi</string>
+    <string name="home_loginDemo">LoginDemo</string>
+    <string name="settings_languageAuto">Auto</string>
 </resources>

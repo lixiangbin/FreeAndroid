@@ -12,6 +12,8 @@ import com.bumptech.glide.load.engine.cache.InternalCacheDiskCacheFactory;
 import com.bumptech.glide.load.engine.cache.LruResourceCache;
 import com.bumptech.glide.module.AppGlideModule;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * 业务名:Glide缓存配置
  * 功能说明:
@@ -27,7 +29,7 @@ import com.bumptech.glide.module.AppGlideModule;
 @GlideModule
 public class GlideCacheModule extends AppGlideModule {
     @Override
-    public void applyOptions(Context context, GlideBuilder builder) {
+    public void applyOptions(@NotNull Context context, @NotNull GlideBuilder builder) {
         super.applyOptions(context, builder);
         builder.setMemoryCache(new LruResourceCache(GlideCatchConfig.GLIDE__MEMORY_CATCH_SIZE))
 

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical"
-    tools:context=".project.modulesUI.mineModule.login.LoginActivity">
+    tools:context=".project.modulesDemo.mineModule.login.LoginActivity">
 
     <LinearLayout
         android:id="@+id/ll_login"
@@ -30,13 +30,15 @@
             android:text="手机号"
             android:textColor="@color/black" />
 
-        <TextView
-            android:id="@+id/tv_phone"
+        <EditText
+            android:id="@+id/et_phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="+86 188 6666 5555"
-            android:textSize="15sp" />
+            android:background="@null"
+            android:hint="请输入您的手机号"
+            android:inputType="number"
+            android:textSize="15sp"/>
 
         <View
             android:layout_width="match_parent"
@@ -143,7 +145,6 @@
                 android:textColor="@color/color_2E79CC"
                 android:textSize="14sp" />
         </RelativeLayout>
-
 
     </LinearLayout>
 </LinearLayout>

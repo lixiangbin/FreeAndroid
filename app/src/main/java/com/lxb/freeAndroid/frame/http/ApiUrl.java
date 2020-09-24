@@ -12,6 +12,6 @@ package com.lxb.freeAndroid.frame.http;
  * 修改内容：
  */
 public class ApiUrl {
-    public static final String BASE_URL = "http://192.168.10.99:8080/demo_myweb/";
+    public static final String BASE_URL = "http://192.168.10.92:8080/demo_myweb/";
     public static final String API_TEST = "RetrofigNullJsonTest";
 }

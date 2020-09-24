@@ -74,7 +74,7 @@ public class GsonResponseBodyConverter<T> implements Converter<ResponseBody, T> 
             jsonObject.addProperty("returnCode", returnCode);
 
             /*处理 "result" 字段为 null 的情况*/
-            if (parseJson.get("result") == null || "null".equals(parseJson.get("result").toString())) {
+            if (parseJson.optJSONObject("result") == null || "null".equals(parseJson.optJSONObject("result") + "")) {
                 jsonObject.add("result", new JsonObject());
                 Log.i("GsonResponseBodyConverter", "已重置 result 字段值内容！");
             } else {

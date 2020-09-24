@@ -26,7 +26,7 @@
 
 
         <activity
-            android:name=".project.mainUI.SplashActivity"
+            android:name=".project.mainDemo.SplashActivity"
             android:theme="@style/SplashTheme_Before"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -35,14 +35,14 @@
             </intent-filter>
         </activity>  <!--启动页-->
         <activity
-            android:name=".project.modulesUI.mineModule.SettingsActivity"
+            android:name=".project.modulesDemo.mineModule.SettingsActivity"
             android:screenOrientation="portrait" /> <!-- 设置 -->
 
         <activity
-            android:name=".project.modulesUI.mineModule.login.LoginActivity"
+            android:name=".project.modulesDemo.mineModule.login.LoginActivity"
             android:screenOrientation="portrait" /> <!-- 登录 -->
         <activity
-            android:name=".project.mainUI.MainActivity"
+            android:name=".project.mainDemo.MainActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait">
             <intent-filter>

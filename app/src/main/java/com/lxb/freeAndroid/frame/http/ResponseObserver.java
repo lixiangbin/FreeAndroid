@@ -6,6 +6,7 @@ import com.lxb.freeAndroid.project.utils.ToastUtils.ToastUtil;
 
 import org.apache.http.conn.ConnectTimeoutException;
 
+import java.net.ConnectException;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 
@@ -26,19 +27,19 @@ import retrofit2.HttpException;
  */
 public abstract class ResponseObserver<T> implements Observer<BaseResponseBean<T>> {
 
+    //private Context context;
+
     public ResponseObserver() {
     }
+
+    //public ResponseObserver(@NonNull Context context) {
+        //this.context = context;
+        //初始化Loading等
+    //}
 
 
     @Override
     public void onNext(BaseResponseBean<T> responseBean) {
-//        if (view != null && view.getContext() != null) {
-//            Activity activity = (Activity) view.getContext();
-//            if (activity.isFinishing()) {
-//                return;
-//            }
-//        }
-
         //TODO...待根据接口文档具体调整
         if (null != responseBean && responseBean.succeed == 1) {
             onSuccess(responseBean.result);
@@ -54,12 +55,6 @@ public abstract class ResponseObserver<T> implements Observer<BaseResponseBean<T
 
     @Override
     public void onComplete() {
-//        if (view != null && view.getContext() != null) {
-//            Activity activity = (Activity) view.getContext();
-//            if (activity.isFinishing()) {
-//                return;
-//            }
-//        }
         //TODO..待添加取消加载动画等业务处理
     }
 
@@ -70,15 +65,25 @@ public abstract class ResponseObserver<T> implements Observer<BaseResponseBean<T
 
         if (e instanceof HttpException) {
             HttpException exception = (HttpException) e;
-            if (exception.code() == 401) {
+            if (exception.code() == 401) {//例 401:被挤下线
+                /*if (!AppApplication.getInstance().isForeground(LoginActivity.class.getName())) {
+                    //退到登录界面
+                    AppApplication.getInstance().startActivity(LoginActivity.class);
+                    AppApplication.getInstance().finishAllActivityToLogin();
+                    //清除token
+                    SPUtils.remove(AppApplication.getInstance().getApplicationContext(), SPKeyConstant.TOKEN);
+                    SPUtils.remove(AppApplication.getInstance().getApplicationContext(), SPKeyConstant.USER_ID);
+                }*/
                 ToastUtil.toastShow(AppApplication.getInstance().getApplicationContext(), "请重新登录");
             } else {
                 ToastUtil.toastShow(AppApplication.getInstance().getApplicationContext(), "操作失败，请检查您的网络");
+                e.printStackTrace();
                 onNetError(e);
             }
 
-        } else if ((e instanceof UnknownHostException) || (e instanceof ConnectTimeoutException) || (e instanceof SocketTimeoutException)) {
+        } else if ((e instanceof UnknownHostException) || (e instanceof ConnectTimeoutException) || (e instanceof SocketTimeoutException) || e instanceof ConnectException) {
             ToastUtil.toastShow(AppApplication.getInstance().getApplicationContext(), "操作失败，请检查您的网络");
+            e.printStackTrace();
             onNetError(e);
         } else {
             ToastUtil.toastShow(AppApplication.getInstance().getApplicationContext(), "未知异常");
@@ -86,13 +91,15 @@ public abstract class ResponseObserver<T> implements Observer<BaseResponseBean<T
             onNetError(e);
         }
         onCallError(e);
+        //取消loading动画
+        //TODO...
     }
 
     //请求成功
     public abstract void onSuccess(T responseBean);
 
     //请求失败
-    public abstract void onFail(BaseResponseBean responseBean);
+    public abstract void onFail(BaseResponseBean<T> responseBean);
 
     //网络错误
     public void onNetError(Throwable e) {

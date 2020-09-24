@@ -7,6 +7,7 @@ import com.lxb.freeAndroid.frame.base.AppConfig;
 
 import java.io.EOFException;
 import java.io.IOException;
+import java.net.SocketTimeoutException;
 import java.net.URLDecoder;
 import java.nio.charset.Charset;
 import java.util.HashMap;
@@ -38,7 +39,7 @@ public class HttpLogInterceptor implements Interceptor {
     @Override
     public Response intercept(Chain chain) throws IOException {
         Request request = chain.request();
-        Response response = chain.proceed(request);
+        Response response;
         if (AppConfig.isDebug) {
 
 
@@ -46,12 +47,13 @@ public class HttpLogInterceptor implements Interceptor {
             //the request method
             String method = request.method();
             long t1 = System.nanoTime();
-            Log.d(TAG, "======================================================================");
-            Log.d(TAG, String.format(Locale.getDefault(), " %s ： [url = %s]", method, url));
+            Log.d(TAG, "===========================网络请求监测日志===========================");
+            Log.d(TAG, String.format(Locale.getDefault(), " %s ：%s", method, url));
             //the request body
             RequestBody requestBody = request.body();
             if (requestBody != null) {
-                StringBuilder sb = new StringBuilder("请求体： [");
+                StringBuilder sbParams = new StringBuilder("请求参数：");
+                StringBuilder sb = new StringBuilder("Content-Type：");
                 Buffer buffer = new Buffer();
                 requestBody.writeTo(buffer);
                 Charset charset = Charset.forName("UTF-8");
@@ -65,15 +67,30 @@ public class HttpLogInterceptor implements Interceptor {
                         myrequestBody = URLDecoder.decode(buffer.readString(charset));
                     } catch (Exception e) {
                     }
-                    sb.append(myrequestBody);
-                    sb.append(" (Content-Type = ").append(contentType.toString()).append(",")
-                            .append(requestBody.contentLength()).append("-byte body)");
+                    sbParams.append(myrequestBody);
+                    sb.append(contentType.toString()).append(",")
+                            .append(requestBody.contentLength()).append("-byte body");
                 } else {
-                    sb.append(" (Content-Type = ").append(contentType.toString())
-                            .append(",binary ").append(requestBody.contentLength()).append("-byte body omitted)");
+                    sb.append(contentType.toString())
+                            .append(",binary ").append(requestBody.contentLength()).append("-byte body omitted");
                 }
-                sb.append("]");
+
+                Log.d(TAG, String.format(Locale.getDefault(), "%s", sbParams.toString()));
                 Log.d(TAG, String.format(Locale.getDefault(), "%s", sb.toString()));
+                Log.d(TAG, " - ");
+                Log.d(TAG, " - ");
+            }
+            Response responseTemp = null;
+            try {
+                responseTemp = chain.proceed(request);
+            } catch (SocketTimeoutException socketTimeoutException) {
+                Log.d(TAG, "连接超时");
+                socketTimeoutException.printStackTrace();
+            } catch (Exception e) {
+                Log.d(TAG, "连接异常");
+                Log.d(TAG, e.toString());
+            } finally {
+                response = responseTemp == null ? chain.proceed(request) : responseTemp;
             }
             long t2 = System.nanoTime();
 
@@ -97,7 +114,9 @@ public class HttpLogInterceptor implements Interceptor {
 
         }
 
-
+        Log.d(TAG, "-\n\n");
+        Log.d(TAG, "======================================================================");
+        Log.d(TAG, "-\n\n");
         return response;
     }
 

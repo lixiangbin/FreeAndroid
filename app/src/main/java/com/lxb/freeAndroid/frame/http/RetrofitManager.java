@@ -1,10 +1,12 @@
 package com.lxb.freeAndroid.frame.http;
 
+
 import com.lxb.freeAndroid.frame.http.gsonConverterFactory.CustomGsonConverterFactory;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * 业务名: Retrofit实例管理
@@ -49,7 +51,8 @@ public class RetrofitManager {
         return new Retrofit.Builder()
                 .client(okHttpClient)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .addConverterFactory(CustomGsonConverterFactory.create())
+                //.addConverterFactory(CustomGsonConverterFactory.create()) //可自定义Gson解析工厂
+                .addConverterFactory(GsonConverterFactory.create())
                 .baseUrl(ApiUrl.BASE_URL)
                 .build();
     }
