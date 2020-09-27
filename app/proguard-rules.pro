@@ -88,9 +88,12 @@
  #-keepclassmembers class * extends android.webkit.WebViewClient {
  #    public void *(android.webkit.WebView, jav.lang.String);
  #}
-#EventBus
- -keepclassmembers class ** {@org.greenrobot.eventbus.Subscribe <methods>;}
+#EventBus 事件/消息总线
+ -keepattributes *Annotation*
+ -keepclassmembers class * {@org.greenrobot.eventbus.Subscribe <methods>;}
  -keep enum org.greenrobot.eventbus.ThreadMode { *; }
+ -keepclassmembers class * extends org.greenrobot.eventbus.util.ThrowableFailureEvent {<init>(java.lang.Throwable);}
+  # And if you use AsyncExecutor:
  -keepclassmembers class * extends org.greenrobot.eventbus.util.ThrowableFailureEvent {<init>(java.lang.Throwable);}
 
 #-------------项目配置----------------#

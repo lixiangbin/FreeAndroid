@@ -10,6 +10,8 @@ import com.lxb.freeAndroid.R;
 import com.lxb.freeAndroid.frame.mvp.BasePresenter;
 import com.lxb.freeAndroid.project.views.CommTitleBar;
 
+import org.greenrobot.eventbus.EventBus;
+
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
@@ -41,6 +43,8 @@ public abstract class BasesActivity<P extends BasePresenter> extends AppCompatAc
         super.onCreate(savedInstanceState);
         setContentViewBefore();
         setContentView(getLayoutId());
+        //注册EventBus
+        EventBus.getDefault().register(this);
         //绑定ButterKnife
         unbinder = ButterKnife.bind(this);
         //实例化Presenter
@@ -61,12 +65,14 @@ public abstract class BasesActivity<P extends BasePresenter> extends AppCompatAc
         initViewData(savedInstanceState);
     }
 
+
     /**
      * 作者：李相斌
      * 创建时期：xxxx-09-23
      * 方法说明：在setContentView前执行
      */
-    protected void setContentViewBefore() {}
+    protected void setContentViewBefore() {
+    }
 
     /**
      * 作者：李相斌
@@ -114,14 +120,10 @@ public abstract class BasesActivity<P extends BasePresenter> extends AppCompatAc
     }
 
     @Override
-    protected void onStop() {
-        super.onStop();
-    }
-
-
-    @Override
     protected void onDestroy() {
         super.onDestroy();
+        //解除EventBus
+        EventBus.getDefault().unregister(this);
         //解除presenter绑定
         if (presenter != null) {
             presenter.onDestroy();

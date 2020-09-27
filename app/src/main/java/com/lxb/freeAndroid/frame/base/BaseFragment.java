@@ -15,6 +15,8 @@ import androidx.fragment.app.Fragment;
 
 import com.lxb.freeAndroid.frame.mvp.BasePresenter;
 
+import org.greenrobot.eventbus.EventBus;
+
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
@@ -43,9 +45,11 @@ public abstract class BaseFragment<P extends BasePresenter> extends Fragment {
     private OnFragmentInteractionListener onFragmentInteractionListener;
 
     private boolean tag;
+
     public void setTag(boolean tag) {
         this.tag = tag;
     }
+
     public boolean findTag() {
         return tag;
     }
@@ -60,7 +64,6 @@ public abstract class BaseFragment<P extends BasePresenter> extends Fragment {
 
     }
 
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +71,8 @@ public abstract class BaseFragment<P extends BasePresenter> extends Fragment {
         if (getArguments() != null) {
             actBundle = getArguments();
         }
+        //注册EventBus
+        EventBus.getDefault().register(this);
         //初始化 presenter
         presenter = initPresenter();
         //presenter绑定
@@ -92,10 +97,11 @@ public abstract class BaseFragment<P extends BasePresenter> extends Fragment {
         initViewData(view, savedInstanceState);
     }
 
-
     @Override
     public void onDestroy() {
         super.onDestroy();
+        //解除EventBus
+        EventBus.getDefault().unregister(this);
         //解除presenter绑定
         if (presenter != null) {
             presenter.onDestroy();

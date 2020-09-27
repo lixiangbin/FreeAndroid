@@ -10,6 +10,8 @@ import com.lxb.freeAndroid.R;
 import com.lxb.freeAndroid.project.utils.ToastUtils.ToastUtil;
 import com.lxb.freeAndroid.project.views.CommTitleBar;
 
+import org.greenrobot.eventbus.EventBus;
+
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
@@ -33,10 +35,13 @@ public abstract class OrdinaryBaseActivity extends AppCompatActivity {
     //Activity / context
     protected Activity act;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
+        //注册EventBus
+        EventBus.getDefault().register(this);
         //绑定ButterKnife
         unbinder = ButterKnife.bind(this);
         //初始化act
@@ -50,6 +55,7 @@ public abstract class OrdinaryBaseActivity extends AppCompatActivity {
         //界面初始化
         initViewData(savedInstanceState);
     }
+
 
     /**
      * 作者：李相斌
@@ -94,26 +100,15 @@ public abstract class OrdinaryBaseActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-
-
-    }
-
-    @Override
     protected void onResume() {
         super.onResume();
     }
 
     @Override
-    protected void onStop() {
-        super.onStop();
-    }
-
-
-    @Override
     protected void onDestroy() {
         super.onDestroy();
+        //解除EventBus
+        EventBus.getDefault().unregister(this);
         //解除ButterKnife注入绑定
         if (unbinder != null) {
             unbinder.unbind();
