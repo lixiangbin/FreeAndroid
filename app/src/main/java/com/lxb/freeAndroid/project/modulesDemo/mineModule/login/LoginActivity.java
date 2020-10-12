@@ -2,9 +2,7 @@ package com.lxb.freeAndroid.project.modulesDemo.mineModule.login;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.text.Editable;
 import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -13,7 +11,6 @@ import android.widget.TextView;
 
 import com.lxb.freeAndroid.R;
 import com.lxb.freeAndroid.frame.base.BasesActivity;
-import com.lxb.freeAndroid.frame.base.Constants;
 import com.lxb.freeAndroid.project.utils.FeatureUtils;
 import com.lxb.freeAndroid.project.utils.SoftInputUtils;
 import com.lxb.freeAndroid.project.utils.ToastUtils.ToastUtil;
@@ -77,56 +74,9 @@ public class LoginActivity extends BasesActivity<LoginPresenter> implements Logi
     protected void initViewData(Bundle savedInstanceState) {
         //初始化登录方式
         changeLoginWay();
-
         //获取焦点自动弹出软键盘
         SoftInputUtils.showSoftInput(et_phone);
 
-        //文本输入监听
-        et_phone.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (s == null || s.length() == 0) return;
-                String str = s.toString().replaceAll(" ", "");
-                //处理手机号，前三位分割，后面每四位分割
-                if (str.length() > 3) {
-                    String strStart = str.substring(0, 3);
-                    String strEnd = str.substring(3);
-                    StringBuffer sbOldPhone = new StringBuffer(strEnd);
-                    StringBuffer sbNewPhone = new StringBuffer();
-                    int len = sbOldPhone.length();
-                    for (int i = 0; i < len; i++) {
-                        if (sbOldPhone.length() > 4) {
-                            sbNewPhone.append(" ");
-                            sbNewPhone.append(sbOldPhone.substring(0, 4));
-                            sbOldPhone = sbOldPhone.delete(0, 4);
-                        } else {
-                            if (sbOldPhone.length() > 0) {
-                                sbNewPhone.append(" ");
-                                sbNewPhone.append(sbOldPhone.substring(0, sbOldPhone.length()));
-                                sbOldPhone = sbOldPhone.delete(0, sbOldPhone.length());
-                            }
-                        }
-                    }
-
-                    sbNewPhone.insert(0, strStart);
-                    et_phone.removeTextChangedListener(this);
-                    et_phone.setText(sbNewPhone.toString());
-                    et_phone.setSelection(sbNewPhone.length());
-                    et_phone.addTextChangedListener(this);
-                }
-
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-            }
-        });
 
     }
 
