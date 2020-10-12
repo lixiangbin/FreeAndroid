@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.net.SocketTimeoutException;
 import java.net.URLDecoder;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -56,7 +57,7 @@ public class HttpLogInterceptor implements Interceptor {
                 StringBuilder sb = new StringBuilder("Content-Type：");
                 Buffer buffer = new Buffer();
                 requestBody.writeTo(buffer);
-                Charset charset = Charset.forName("UTF-8");
+                Charset charset = StandardCharsets.UTF_8;
                 MediaType contentType = requestBody.contentType();
                 if (contentType != null) {
                     charset = contentType.charset(charset);
@@ -157,7 +158,7 @@ public class HttpLogInterceptor implements Interceptor {
                 //正确解析
                 mapRequest.put(arrSplitEqual[0], arrSplitEqual[1]);
             } else {
-                if (arrSplitEqual[0] != "") {
+                if (!arrSplitEqual[0].equals("")) {
                     //只有参数没有值，不加入
                     mapRequest.put(arrSplitEqual[0], "");
                 }

@@ -72,6 +72,7 @@ public class LoginActivity extends BasesActivity<LoginPresenter> implements Logi
         return new LoginPresenter(this);
     }
 
+
     @Override
     protected void initViewData(Bundle savedInstanceState) {
         //初始化登录方式

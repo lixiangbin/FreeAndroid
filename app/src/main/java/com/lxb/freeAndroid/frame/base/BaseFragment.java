@@ -72,7 +72,7 @@ public abstract class BaseFragment<P extends BasePresenter> extends Fragment {
             actBundle = getArguments();
         }
         //注册EventBus
-        EventBus.getDefault().register(this);
+        //EventBus.getDefault().register(this);
         //初始化 presenter
         presenter = initPresenter();
         //presenter绑定
@@ -101,7 +101,7 @@ public abstract class BaseFragment<P extends BasePresenter> extends Fragment {
     public void onDestroy() {
         super.onDestroy();
         //解除EventBus
-        EventBus.getDefault().unregister(this);
+        //EventBus.getDefault().unregister(this);
         //解除presenter绑定
         if (presenter != null) {
             presenter.onDestroy();
