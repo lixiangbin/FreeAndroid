@@ -20,7 +20,14 @@
 ![](https://github.com/lixiangbin/FreeAndroid/blob/master/附件/目录.jpg)
 
 **【如何使用】**
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<p>
+MVP模式的Activity使用可参考 project/modulesDemo/login 目录下LoginActivity；相关M层、V层、P层的继承写法以及使用可参考此目录下相关类文件；
+</br>相关类文件释义:</br>
+xxxBean：实体类；</br>
+xxxContract：契约类，为了减少冗余文件，此处将Model契约和View契约写在同一个类文件中；此后将由xxxActivity具体实现View层方法，xxxModelImpl具体实现Model层方法；</br>
+xxxModelImpl：Model的实现类，负责进行网络数据请求；</br>
+xxxPresenter：主导层，在此类中处理来自View层的数据，或将Model层的数据传给View层；</br>
+
 
 
 
