@@ -28,7 +28,7 @@
 4.无网络请求的Activity可继承OrdinaryBaseActivity作为基类，具体请参考SettingsActivity。
 </p>
 
-<h3>相关类文件释义:</h3>
+<h5>相关类文件释义:</h5>
 <ul><li>xxxBean：实体类；</li>
 <li>xxxContract：契约类，为了减少冗余文件，此处将Model契约和View契约写在同一个类文件中；此后将由xxxActivity具体实现View层方法，xxxModelImpl具体实现Model层方法；</li>
 <li>xxxModelImpl：Model的实现类，负责进行网络数据请求；</li>
@@ -36,7 +36,7 @@
 </ul>
 
 <h4>二、开始前请配置以下文件(必：表示必配，选：表示选配)：</h4>
-<ul><li>[必]1.ApiUrl.java类 (app/src/main/java/com/lxb/freeAndroid/frame/http/ApiUrl.java)：服务器域名、api接口地址等url可在此文件中配置、添加；</li>
+<ul><li><a style=font-style:oblique>[必]</a>1.ApiUrl.java类 (app/src/main/java/com/lxb/freeAndroid/frame/http/ApiUrl.java)：服务器域名、api接口地址等url可在此文件中配置、添加；</li>
 <li>[必]2.BaseModel.java类 (app/src/main/java/com/lxb/freeAndroid/frame/mvp/BaseModel.java)：公共请求参数可在此类的“setParams()”方法中配置；</li>
 <li>[选]3.ResponseObserver.java类 (app/src/main/java/com/lxb/freeAndroid/frame/http/ResponseObserver.java)：此文件中可根据实际需要对你请求到的网络数据进行预处理、业务预封装等；</li>
 <li>[选]4.OkHttpClientManager.java类 (app/src/main/java/com/lxb/freeAndroid/frame/http/OkHttpClientManager.java)：可在此文件中配置SSL相关，默认信任所有主机；</li>
