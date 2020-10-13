@@ -20,25 +20,35 @@
 ![](https://github.com/lixiangbin/FreeAndroid/blob/master/附件/目录.jpg)
 
 **【如何使用】**
+
+**一、请参考以下Demo：**
 <p>
-**一、请参考以下Demo：**</br>
 1.MVP模式的Activity使用可参考 project/modulesDemo/login 目录下LoginActivity；</br>
 2.MVP模式的Fragment使用可参考 project/mainDemo/fragment 目录下FirstFragment；</br>
 3.相关M层、V层、P层的继承写法以及使用可参考此目录下相关类文件；</br>
 4.无网络请求的Activity可继承OrdinaryBaseActivity作为基类，具体请参考SettingsActivity。
-</br>**相关类文件释义:**</br>
+</p>
+
+**相关类文件释义:**
+<p>
 xxxBean：实体类；</br>
 xxxContract：契约类，为了减少冗余文件，此处将Model契约和View契约写在同一个类文件中；此后将由xxxActivity具体实现View层方法，xxxModelImpl具体实现Model层方法；</br>
 xxxModelImpl：Model的实现类，负责进行网络数据请求；</br>
 xxxPresenter：主导层，在此类中处理来自View层的数据，或将Model层的数据传给View层。</br>
+</p>
+
 **二、开始前请配置以下文件(必：表示必配，选：表示选配)：**</br>
+<p>
 [必]1.ApiUrl.java类 (app/src/main/java/com/lxb/freeAndroid/frame/http/ApiUrl.java)：服务器域名、api接口地址等url可在此文件中配置、添加；</br>
 [必]2.BaseModel.java类 (app/src/main/java/com/lxb/freeAndroid/frame/mvp/BaseModel.java)：公共请求参数可在此类的“setParams()”方法中配置；</br>
 [选]3.ResponseObserver.java类 (app/src/main/java/com/lxb/freeAndroid/frame/http/ResponseObserver.java)：此文件中可根据实际需要对你请求到的网络数据进行预处理、业务预封装等；</br>
-[选]4.OkHttpClientManager.java类 (app/src/main/java/com/lxb/freeAndroid/frame/http/OkHttpClientManager.java)：可在此文件中配置SSL相关，默认信任所主机；</br>
+[选]4.OkHttpClientManager.java类 (app/src/main/java/com/lxb/freeAndroid/frame/http/OkHttpClientManager.java)：可在此文件中配置SSL相关，默认信任所有主机；</br>
 [选]5.Service.java类 (app/src/main/java/com/lxb/freeAndroid/frame/http/Service.java)：api接口封装，此处只封装了一个常用POST请求，可根据需求添加GET请求、文件上传下载等api等。</br>
 另：其它配置(如：签名、包名等)这里不再详述；</br>
-**三、其它：**</br>
+</p>
+
+**三、其它：**
+<p>
 1.项目中所提供的工具类、自定义View、属性样式、资源文件等，可自行修改或增删；
 </p>
 
