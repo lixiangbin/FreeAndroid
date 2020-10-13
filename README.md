@@ -36,11 +36,11 @@
 </ul>
 
 <h4>二、开始前请配置以下文件(必：表示必配，选：表示选配)：</h4>
-<p>【必】1.ApiUrl.java类 (app/src/main/java/com/lxb/freeAndroid/frame/http/ApiUrl.java)：服务器域名、api接口地址等url可在此文件中配置、添加；</p>
-<p>【必】2.BaseModel.java类 (app/src/main/java/com/lxb/freeAndroid/frame/mvp/BaseModel.java)：公共请求参数可在此类的“setParams()”方法中配置；</p>
-<p>【选】3.ResponseObserver.java类 (app/src/main/java/com/lxb/freeAndroid/frame/http/ResponseObserver.java)：此文件中可根据实际需要对你请求到的网络数据进行预处理、业务预封装等；</p>
-<p>【选】4.OkHttpClientManager.java类 (app/src/main/java/com/lxb/freeAndroid/frame/http/OkHttpClientManager.java)：可在此文件中配置SSL相关，默认信任所有主机；</p>
-<p>【选】5.Service.java类 (app/src/main/java/com/lxb/freeAndroid/frame/http/Service.java)：api接口封装，此处只封装了一个常用POST请求，可根据需求添加GET请求、文件上传下载等api等。</p>
+<p>【必】1.ApiUrl.java类 (app/src/main/java/com/lxb/freeAndroid/frame/http/ApiUrl.java)：服务器域名、api地址等url可在此文件中配置、添加；</br>
+【必】2.BaseModel.java类 (app/src/main/java/com/lxb/freeAndroid/frame/mvp/BaseModel.java)：公共请求参数可在此类的“setParams()”方法中配置；</br>
+【选】3.ResponseObserver.java类 (app/src/main/java/com/lxb/freeAndroid/frame/http/ResponseObserver.java)：此文件中可根据实际需要对你请求到的网络数据进行预处理、业务预封装等；</br>
+【选】4.OkHttpClientManager.java类 (app/src/main/java/com/lxb/freeAndroid/frame/http/OkHttpClientManager.java)：可在此文件中配置SSL相关，默认信任所有主机；</br>
+【选】5.Service.java类 (app/src/main/java/com/lxb/freeAndroid/frame/http/Service.java)：api接口封装，此处只封装了一个常用POST请求，可根据需求添加GET请求、文件上传下载等api等。</br>
 另：其它配置(如：签名、包名等)这里不再详述；</p>
 
 
