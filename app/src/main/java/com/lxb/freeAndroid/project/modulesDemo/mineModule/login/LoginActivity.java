@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.lxb.freeAndroid.R;
 import com.lxb.freeAndroid.frame.base.BasesActivity;
 import com.lxb.freeAndroid.project.utils.FeatureUtils;
+
 import com.lxb.freeAndroid.project.utils.SoftInputUtils;
 import com.lxb.freeAndroid.project.utils.ToastUtils.ToastUtil;
 
@@ -74,8 +75,7 @@ public class LoginActivity extends BasesActivity<LoginPresenter> implements Logi
     protected void initViewData(Bundle savedInstanceState) {
         //初始化登录方式
         changeLoginWay();
-        //获取焦点自动弹出软键盘
-        SoftInputUtils.showSoftInput(et_phone);
+
 
 
     }
@@ -115,10 +115,14 @@ public class LoginActivity extends BasesActivity<LoginPresenter> implements Logi
             llPwd.setVisibility(View.VISIBLE);
             rlCode.setVisibility(View.GONE);
             tvChangeWay.setText("用验证码登录");
+            //获取焦点自动弹出软键盘
+            SoftInputUtils.showSoftInput(et_phone);
         } else {
             rlCode.setVisibility(View.VISIBLE);
             llPwd.setVisibility(View.GONE);
             tvChangeWay.setText("用密码登录");
+            //获取焦点自动弹出软键盘
+            SoftInputUtils.showSoftInput(etCode);
         }
     }
 

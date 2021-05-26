@@ -33,8 +33,8 @@ public abstract class ResponseObserver<T> implements Observer<BaseResponseBean<T
     }
 
     //public ResponseObserver(@NonNull Context context) {
-        //this.context = context;
-        //初始化Loading等
+    //this.context = context;
+    //初始化Loading等
     //}
 
 
@@ -43,8 +43,10 @@ public abstract class ResponseObserver<T> implements Observer<BaseResponseBean<T
         //TODO...待根据接口文档具体调整
         if (null != responseBean && responseBean.succeed == 1) {
             onSuccess(responseBean.result);
+            onSuccessAllData(responseBean);
         } else {
             onFail(responseBean);
+            onFailAllData(responseBean);
         }
     }
 
@@ -98,8 +100,16 @@ public abstract class ResponseObserver<T> implements Observer<BaseResponseBean<T
     //请求成功
     public abstract void onSuccess(T responseBean);
 
+    //请求成功 - 返回所有原始数据
+    public void onSuccessAllData(BaseResponseBean<T> baseResponseBean) {
+    }
+
     //请求失败
     public abstract void onFail(BaseResponseBean<T> responseBean);
+
+    //请求失败 - 返回所有原始数据
+    public void onFailAllData(BaseResponseBean<T> baseResponseBean) {
+    }
 
     //网络错误
     public void onNetError(Throwable e) {
