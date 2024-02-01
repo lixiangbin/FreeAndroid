@@ -15,6 +15,7 @@
         <item name="colorPrimary">@color/white</item>
         <item name="colorPrimaryDark">#3cc4bf</item>
         <item name="colorAccent">@color/color_hint</item>
+        <item name="android:navigationBarColor">#00000000</item>
     </style>
 
     <!--启动页_启动前(优化启动白屏)-->

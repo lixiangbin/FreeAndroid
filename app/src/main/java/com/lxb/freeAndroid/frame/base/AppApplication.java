@@ -67,7 +67,7 @@ public class AppApplication extends Application {
      * 方法说明：获取指定名称的Activity
      * TODO...待测...
      */
-    public Activity getThisActivity(Class<? extends Activity> activityCls) {
+    public Activity getTheActivity(Class<? extends Activity> activityCls) {
         if (activityList != null && activityList.size() > 0) {
             for (Activity activity : activityList) {
                 if (activity.getClass() == activityCls) {

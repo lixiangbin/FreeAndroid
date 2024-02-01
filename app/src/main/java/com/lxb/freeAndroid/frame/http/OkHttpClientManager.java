@@ -19,6 +19,8 @@ import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.util.concurrent.TimeUnit;
 
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
 import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManager;
@@ -41,9 +43,9 @@ import okhttp3.logging.HttpLoggingInterceptor;
  */
 public class OkHttpClientManager {
 
-    private static long connectTimeout = 30;
-    private static long readTimeout = 50;
-    private static long writeTimeout = 2;
+    private static final long connectTimeout = 30;
+    private static final long readTimeout = 50;
+    private static final long writeTimeout = 2;
 
     private static volatile OkHttpClient okHttpClient;
 
@@ -131,7 +133,8 @@ public class OkHttpClientManager {
         } catch (NoSuchAlgorithmException | KeyManagementException e) {
             e.printStackTrace();
         }
-        builder.hostnameVerifier((hostname, session) -> true);
+        //校验服务器主机
+        builder.hostnameVerifier((hostname, session) -> true);//信任所有
     }
 
 
@@ -141,7 +144,7 @@ public class OkHttpClientManager {
      * 方法说明：SSL安全校验配置 2
      * 配置双向认证
      */
-    private static void configSSL_KT(OkHttpClient.Builder builder, String keyStorePath, String password,String trustStorePath) {
+    private static void configSSL_KT(OkHttpClient.Builder builder, String keyStorePath, String password, String trustStorePath) {
 
         //双向认证管理器，在需要双向认证时使用
         X509TrustManager trustCert = new X509TrustManager() {
@@ -177,7 +180,8 @@ public class OkHttpClientManager {
             keyStore = KeyStore.getInstance("JKS");
             //创建jkd密钥访问库    123456是keystore密码。
             keyStore.load(new FileInputStream(keyStorePath), "123456".toCharArray());
-        } catch (KeyStoreException | CertificateException | NoSuchAlgorithmException | IOException e) {
+        } catch (KeyStoreException | CertificateException | NoSuchAlgorithmException |
+                 IOException e) {
             e.printStackTrace();
         }
         // 初始化密钥工厂
@@ -201,8 +205,9 @@ public class OkHttpClientManager {
         try {
             trustStore = KeyStore.getInstance("JKS");
             //创建jkd密钥访问库    123456是trustStore密码。
-            keyStore.load(new FileInputStream(trustStorePath), "123456".toCharArray());
-        } catch (CertificateException | IOException | NoSuchAlgorithmException | KeyStoreException e) {
+            trustStore.load(new FileInputStream(trustStorePath), "123456".toCharArray());
+        } catch (CertificateException | IOException | NoSuchAlgorithmException |
+                 KeyStoreException e) {
             e.printStackTrace();
         }
         // 初始化信任工厂
@@ -224,7 +229,16 @@ public class OkHttpClientManager {
             e.printStackTrace();
         }
 
-        builder.hostnameVerifier((hostname, session) -> true);
+        //校验服务器主机
+        builder.hostnameVerifier((hostname, session) -> {
+            if ("www.test.com".equals(hostname)) {
+                return true;
+            } else {
+                HostnameVerifier hv = HttpsURLConnection.getDefaultHostnameVerifier();
+                return hv.verify(hostname, session);
+            }
+
+        });
     }
 
 
