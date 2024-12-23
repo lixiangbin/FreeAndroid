@@ -56,28 +56,33 @@ dependencies {
     implementation 'com.jakewharton:butterknife:10.2.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
     //OkHttp
-    implementation("com.squareup.okhttp3:okhttp:4.1.0")
-    implementation 'com.squareup.okio:okio:2.2.2'
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+    implementation 'com.squareup.okio:okio:3.6.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.5.0'
     //RxjJava
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.3'
-    implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
+    implementation 'io.reactivex.rxjava3:rxjava:3.1.8'
+    implementation 'io.reactivex.rxjava3:rxandroid:3.0.2'
     //Retrofit
-    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
-    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.5.0'
-    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'com.squareup.retrofit2:retrofit:2.11.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.11.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava3:2.11.0'
+    implementation 'com.google.code.gson:gson:2.10.1'
     //图片加载框架
-    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
     //Glide变形样式依赖库
-    implementation 'jp.wasabeef:glide-transformations:4.1.0'
+    implementation 'jp.wasabeef:glide-transformations:4.3.0'
     //事件/消息总线
     implementation 'org.greenrobot:eventbus:3.2.0'
     //RxPermissions2 动态权限库
-    implementation 'com.github.tbruyelle:rxpermissions:0.10.2'
+    implementation 'com.github.tbruyelle:rxpermissions:0.12'
     //XRecyclerView框架
     implementation 'com.jcodecraeer:xrecyclerview:1.6.0'
+    //扫码库
+    implementation 'com.google.zxing:android-core:3.3.0'
+    implementation 'com.google.zxing:core:3.3.2'
     //沉浸式状态栏
     implementation 'com.gyf.immersionbar:immersionbar:3.0.0-beta03'
+    //Loading指示器库
+    implementation 'com.wang.avi:library:2.1.3'
 }

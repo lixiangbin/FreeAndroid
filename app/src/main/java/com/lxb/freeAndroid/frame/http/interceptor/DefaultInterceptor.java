@@ -38,7 +38,7 @@ public class DefaultInterceptor implements Interceptor {
     public Response intercept(@NotNull Chain chain) throws IOException {
 
         //获取请求体参数 打印日志
-        System.out.println("DefaultInterceptor---解析请求头");
+        System.out.println("DefaultInterceptor---解析请求体");
         RequestBody requestBody = chain.request().body();
         Charset charset = StandardCharsets.UTF_8;
         MediaType contentType = requestBody.contentType();
@@ -57,6 +57,7 @@ public class DefaultInterceptor implements Interceptor {
 
 
         //获取请求头参数 打印日志
+        System.out.println("DefaultInterceptor---解析请求头");
         Map<String, List<String>> map = chain.request().headers().toMultimap();
         if (map.size() > 0) {
             map.forEach((kayStr, valueStrList) -> {

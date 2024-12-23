@@ -31,11 +31,6 @@ import com.lxb.freeAndroid.project.utils.ToastUtils.ToastUtil;
 import java.util.HashMap;
 
 import butterknife.BindView;
-import io.reactivex.Observable;
-import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.observers.ResourceObserver;
-import io.reactivex.schedulers.Schedulers;
 
 /**
  * 业务名: 主页界面
