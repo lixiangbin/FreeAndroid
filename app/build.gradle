@@ -81,8 +81,10 @@ dependencies {
     //扫码库
     implementation 'com.google.zxing:android-core:3.3.0'
     implementation 'com.google.zxing:core:3.3.2'
-    //沉浸式状态栏
-    implementation 'com.gyf.immersionbar:immersionbar:3.0.0-beta03'
+    //沉浸式状态栏-主库
+    implementation 'com.geyifeng.immersionbar:immersionbar:3.2.2'
+    //沉浸式状态栏-kotlin扩展(可选)
+    implementation 'com.geyifeng.immersionbar:immersionbar-ktx:3.2.2'
     //Loading指示器库
     implementation 'com.wang.avi:library:2.1.3'
 }
