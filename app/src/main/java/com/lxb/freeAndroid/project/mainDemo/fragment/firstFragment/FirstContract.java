@@ -24,6 +24,6 @@ public class FirstContract {
     }
 
     interface CaeModel extends IModel{
-        void requestData(HashMap<String, Object> paramMap, ResponseObserver<BaseResponseBean> responseObserver);
+        void requestData(HashMap<String, Object> paramMap, ResponseObserver<BaseResponseBean<DemoTestBean>> responseObserver);
     }
 }

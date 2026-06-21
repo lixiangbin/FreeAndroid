@@ -3,9 +3,11 @@ package com.lxb.freeAndroid.frame.http;
 
 import com.lxb.freeAndroid.frame.base.BaseResponseBean;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 import io.reactivex.rxjava3.core.Observable;
+import retrofit2.Call;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
@@ -26,4 +28,11 @@ public interface Service {
     @FormUrlEncoded
     @POST
     Observable<BaseResponseBean> executePost(@Url String url, @FieldMap Map<String, Object> map);
+
+    @FormUrlEncoded
+    @POST
+    Call<BaseResponseBean> executeCall(@Url String url, @FieldMap Map<String, Object> map);
+    @FormUrlEncoded
+    @POST
+    ArrayList<String> executeCallArr(@Url String url, @FieldMap Map<String, Object> map);
 }

@@ -20,7 +20,7 @@ import java.util.HashMap;
  */
 public class FirstModelImpl extends BaseModel implements FirstContract.CaeModel {
     @Override
-    public void requestData(HashMap<String, Object> paramMap, ResponseObserver<BaseResponseBean> responseObserver) {
+    public void requestData(HashMap<String, Object> paramMap, ResponseObserver<BaseResponseBean<DemoTestBean>> responseObserver) {
         requestNetworkDefault(paramMap, responseObserver, ApiUrl.API_TEST);
     }
 }

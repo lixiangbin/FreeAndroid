@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 36
     defaultConfig {
         applicationId "com.lxb.freeAndroid"
         minSdkVersion 25
-        targetSdkVersion 29
+        targetSdkVersion 36
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -37,50 +37,51 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    buildFeatures {
+        buildConfig true
+    }
+    namespace 'com.lxb.freeAndroid'
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:29.0.0'
-    implementation 'com.android.support:support-v4:29.0.0'
-    implementation 'com.android.support.constraint:constraint-layout:2.0.1'
-    implementation 'com.google.android.material:material:1.2.1'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
+    implementation 'com.google.android.material:material:1.14.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation 'androidx.appcompat:appcompat:1.7.1'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test:runner:1.7.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.7.0'
     //注入
     //noinspection AnnotationProcessorOnCompilePath
     implementation 'com.jakewharton:butterknife:10.2.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
     //OkHttp
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
-    implementation 'com.squareup.okio:okio:3.6.0'
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.5.0'
+    implementation 'com.squareup.okio:okio:3.17.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.12.0'
     //RxjJava
-    implementation 'io.reactivex.rxjava3:rxjava:3.1.8'
+    implementation 'io.reactivex.rxjava3:rxjava:3.1.12'
     implementation 'io.reactivex.rxjava3:rxandroid:3.0.2'
+    //RxPermissions 动态权限库（JitPack artifactId 区分大小写）
+    implementation 'com.github.tbruyelle:RxPermissions:0.12'
     //Retrofit
-    implementation 'com.squareup.retrofit2:retrofit:2.11.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.11.0'
-    implementation 'com.squareup.retrofit2:adapter-rxjava3:2.11.0'
-    implementation 'com.google.code.gson:gson:2.10.1'
+    implementation 'com.squareup.retrofit2:retrofit:3.0.0'
+    implementation 'com.squareup.retrofit2:converter-gson:3.0.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava3:3.0.0'
+    implementation 'com.google.code.gson:gson:2.14.0'
     //图片加载框架
-    implementation 'com.github.bumptech.glide:glide:4.11.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+    implementation 'com.github.bumptech.glide:glide:4.16.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.16.0'
     //Glide变形样式依赖库
     implementation 'jp.wasabeef:glide-transformations:4.3.0'
     //事件/消息总线
-    implementation 'org.greenrobot:eventbus:3.2.0'
-    //RxPermissions2 动态权限库
-    implementation 'com.github.tbruyelle:rxpermissions:0.12'
+    implementation 'org.greenrobot:eventbus:3.3.1'
     //XRecyclerView框架
     implementation 'com.jcodecraeer:xrecyclerview:1.6.0'
     //扫码库
     implementation 'com.google.zxing:android-core:3.3.0'
-    implementation 'com.google.zxing:core:3.3.2'
+    implementation 'com.google.zxing:core:3.5.4'
     //沉浸式状态栏-主库
     implementation 'com.geyifeng.immersionbar:immersionbar:3.2.2'
     //沉浸式状态栏-kotlin扩展(可选)

@@ -4,12 +4,11 @@ buildscript {
     repositories {
         google()
         //jcenter { url "http://jcenter.bintray.com/" }
-        jcenter()
         mavenCentral()
         maven { url "https://jitpack.io" }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.1.3'
+        classpath 'com.android.tools.build:gradle:8.13.2'
     }
 }
 
@@ -17,7 +16,6 @@ allprojects {
     repositories {
         google()
         //jcenter { url "http://jcenter.bintray.com/" }
-        jcenter()
         mavenCentral()
         maven { url "https://maven.google.com" }
         //maven { url 'http://repo1.maven.org/maven2' } //一些库国内无法访问，以下使用阿里云代理镜像替换
@@ -29,10 +27,9 @@ allprojects {
         maven { url 'https://maven.aliyun.com/repository/google/' }
         maven { url 'https://maven.aliyun.com/repository/jcenter' }
 
-
     }
 }
 
-task clean(type: Delete) {
+tasks.register('clean', Delete) {
     delete rootProject.buildDir
 }

@@ -15,7 +15,7 @@ import com.lxb.freeAndroid.frame.mvp.BasePresenter;
  * 修改人：
  * 修改内容：
  */
-public class FirstPresenter extends BasePresenter<FirstContract.CaeModel, FirstContract.CaeView>  {
+public class FirstPresenter extends BasePresenter<FirstContract.CaeModel, FirstContract.CaeView> {
     public FirstPresenter(FirstContract.CaeView view) {
         super(view);
     }
@@ -30,13 +30,14 @@ public class FirstPresenter extends BasePresenter<FirstContract.CaeModel, FirstC
      * 创建时期：xxxx-09-23
      * 方法说明：
      */
-    public void requestTest(){
+    public void requestTest() {
         paramsMap.clear();
-        paramsMap.put("666","888");
-        model.requestData(paramsMap, new ResponseObserver<BaseResponseBean>() {
+        paramsMap.put("666", "888");
+        model.requestData(paramsMap, new ResponseObserver<BaseResponseBean<DemoTestBean>>() {
             @Override
-            public void onSuccess(BaseResponseBean responseBean) {
-
+            public void onSuccess(BaseResponseBean<DemoTestBean> responseBean) {
+                DemoTestBean testBean = responseBean.result;
+                String demoId = testBean.id;
             }
 
             @Override

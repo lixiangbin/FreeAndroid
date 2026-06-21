@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.lxb.freeAndroid">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
@@ -27,6 +26,7 @@
 
         <activity
             android:name=".project.mainDemo.SplashActivity"
+            android:exported="true"
             android:theme="@style/SplashTheme_Before"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -43,6 +43,7 @@
             android:screenOrientation="portrait" /> <!-- 登录 -->
         <activity
             android:name=".project.mainDemo.MainActivity"
+            android:exported="true"
             android:launchMode="singleTask"
             android:screenOrientation="portrait">
             <intent-filter>

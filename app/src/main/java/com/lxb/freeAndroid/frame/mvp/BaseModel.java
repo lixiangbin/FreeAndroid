@@ -15,8 +15,6 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
-import io.reactivex.rxjava3.annotations.NonNull;
-import io.reactivex.rxjava3.core.Observer;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
@@ -66,35 +64,37 @@ public class BaseModel implements IModel {
      * 方法说明：提取封装 配置Retrofit与Rx
      */
     private <T> void configRetrofitAndRx(Service service, Map<String, Object> map, ResponseObserver<T> responseObserver, String url) {
-        service.executePost(url, setParams(map))
+        Disposable disposable = service.executePost(url, setParams(map))
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                //.subscribe(responseObserver);
-                //此处不直接使用形参-responseObserver，以将订阅事件在Model层加入管理容器中
-                .subscribe(new Observer<BaseResponseBean>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-                        responseObserver.onSubscribe(d);
-                        addCompositeDisposable(d);
-                    }
+                //采用方案2：手动转发ResponseObserver事件。
+                //subscribe返回的Disposable会在订阅后加入Model层管理容器，避免忽略订阅结果。
+                .doOnSubscribe(responseObserver::onSubscribe)
+                .subscribe(
+                        responseObserver::onNext,
+                        responseObserver::onError,
+                        responseObserver::onComplete
+                );
+        addCompositeDisposable(disposable);
 
-                    @Override
-                    public void onNext(BaseResponseBean baseResponseBean) {
-                        responseObserver.onNext(baseResponseBean);
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        responseObserver.onError(e);
-                    }
-
-                    @Override
-                    public void onComplete() {
-                        responseObserver.onComplete();
-                    }
-                });
+        /*
+         * 备用方案1：让Service返回Observable<BaseResponseBean<Object>>，再在Model层统一转换为Observable<BaseResponseBean<T>>。
+         * 这个方案可以让主链路直接.subscribe(responseObserver)，但内部仍需要一次unchecked转换，所以暂时保留不启用。
+         *
+         * this.<T>executePost(service, url, setParams(map))
+         *         .subscribeOn(Schedulers.io())
+         *         .unsubscribeOn(Schedulers.io())
+         *         .observeOn(AndroidSchedulers.mainThread())
+         *         .doOnSubscribe(this::addCompositeDisposable)
+         *         .subscribe(responseObserver);
+         */
     }
+
+//    @SuppressWarnings("unchecked")
+//    private <T> Observable<BaseResponseBean<T>> executePost(Service service, String url, Map<String, Object> map) {
+//        return (Observable<BaseResponseBean<T>>) (Observable<?>) service.executePost(url, map);
+//    }
 
 
     /**
