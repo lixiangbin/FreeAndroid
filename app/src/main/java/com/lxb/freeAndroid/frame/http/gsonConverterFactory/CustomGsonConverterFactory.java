@@ -24,11 +24,9 @@ import retrofit2.Retrofit;
  * 修改内容：
  */
 public class CustomGsonConverterFactory extends Converter.Factory {
-
     public static CustomGsonConverterFactory create() {
         return create(new Gson());
     }
-
 
     @SuppressWarnings("ConstantConditions") // Guarding public API nullability.
     public static CustomGsonConverterFactory create(Gson gson) {
@@ -37,7 +35,6 @@ public class CustomGsonConverterFactory extends Converter.Factory {
     }
 
     private final Gson gson;
-
     private CustomGsonConverterFactory(Gson gson) {
         this.gson = gson;
     }

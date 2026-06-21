@@ -29,7 +29,6 @@ import java.util.Locale;
  */
 public class LanguageUtils {
 
-
     /**
      * 作者：李相斌
      * 创建时期：xxxx-09-23

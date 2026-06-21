@@ -3,9 +3,18 @@ package com.lxb.freeAndroid.frame.base;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.TypedValue;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import com.lxb.freeAndroid.R;
 import com.lxb.freeAndroid.project.utils.ToastUtils.ToastUtil;
@@ -45,7 +54,9 @@ public abstract class OrdinaryBaseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentViewBefore();
+        restoreNormalStatusBar();
         setContentView(getLayoutId());
+        applySystemBarInsets();
         //注册EventBus
         //EventBus.getDefault().register(this);
         //绑定ButterKnife
@@ -81,6 +92,59 @@ public abstract class OrdinaryBaseActivity extends AppCompatActivity {
      * 方法说明：在setContentView前执行
      */
     protected void setContentViewBefore() {
+    }
+
+    /**
+     * 作者：李相斌
+     * 创建时期：xxxx-09-23
+     * 方法说明：恢复普通Activity状态栏显示，避免启动页全屏配置影响后续界面
+     */
+    protected void restoreNormalStatusBar() {
+        Window window = getWindow();
+        window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            TypedValue typedValue = new TypedValue();
+            getTheme().resolveAttribute(android.R.attr.colorPrimaryDark, typedValue, true);
+            window.setStatusBarColor(typedValue.data);
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            window.setDecorFitsSystemWindows(true);
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            window.getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        } else {
+            window.getDecorView().setSystemUiVisibility(0);
+        }
+    }
+
+    /**
+     * 作者：李相斌
+     * 创建时期：xxxx-09-23
+     * 方法说明：为普通Activity内容预留系统栏区域，防止targetSdk 35+强制edge-to-edge后内容与系统栏重叠
+     */
+    protected void applySystemBarInsets() {
+        ViewGroup contentView = findViewById(android.R.id.content);
+        if (contentView == null || contentView.getChildCount() == 0) {
+            return;
+        }
+        View child = contentView.getChildAt(0);
+        int initialLeft = child.getPaddingLeft();
+        int initialTop = child.getPaddingTop();
+        int initialRight = child.getPaddingRight();
+        int initialBottom = child.getPaddingBottom();
+        ViewCompat.setOnApplyWindowInsetsListener(child, (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(
+                    initialLeft + systemBars.left,
+                    initialTop + systemBars.top,
+                    initialRight + systemBars.right,
+                    initialBottom + systemBars.bottom
+            );
+            return insets;
+        });
+        ViewCompat.requestApplyInsets(child);
     }
 
     /**
